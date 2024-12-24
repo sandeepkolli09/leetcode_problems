@@ -1,0 +1,50 @@
+438. Find All Anagrams in a String:
+code:
+vector<int> findAnagrams(string s, string p) {
+    vector<int>v;
+    int n=s.length(),m=p.length();
+    map<char,int>s1;
+    map<char,int>p1;
+    for(int i=0;i<m;i++)
+    {
+        p1[p[i]]++;
+    }
+    int i=0,j=0;
+    while(j<n)
+{
+if(j-i+1<m)
+{
+    s1[s[j]]++;
+
+j++;}
+else
+{
+    s1[s[j]]++;
+    if(check(s1,p1))
+    {
+        v.push_back(i);
+    }
+    s1[s[i]]--;
+    if(s1[s[i]]==0)
+    s1.erase(s[i]);
+    i++;j++;
+}
+
+}
+return v;}
+
+    bool check(map<char, int>& s, map<char, int>& p) {
+    if (s.size() != p.size())
+        return false;
+
+    auto it1 = s.begin();
+    auto it2 = p.begin();
+    while (it1 != s.end() && it2 != p.end()) {
+        if (it1->first != it2->first || it1->second != it2->second)
+            return false;
+        ++it1;
+        ++it2;
+    }
+    return true;
+}
+};
