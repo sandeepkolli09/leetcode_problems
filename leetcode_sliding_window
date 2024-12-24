@@ -1,1 +1,33 @@
+Leetcode "1876"
+https://leetcode.com/problems/find-all-anagrams-in-a-string
 
+1876. Substrings of Size Three with Distinct Characters:
+code :
+int countGoodSubstrings(string s) {
+        int count=0,i=0,j=0;
+        int n=s.length();
+       unordered_map<char,int>mp;
+        while(j<n)
+        {
+         if(j-i+1<3)
+        {
+            mp[s[j]]++;
+                j++;
+        }
+        else{
+            mp[s[j]]++;
+            if(mp.size()==3)
+            {
+                count++;
+            }
+            mp[s[i]]--;
+           
+           if(mp[s[i]]==0)
+            mp.erase(s[i]);
+            i++;
+            j++;
+        }
+    
+        }
+        return count;
+    }
