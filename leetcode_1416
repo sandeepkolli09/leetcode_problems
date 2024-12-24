@@ -1,0 +1,35 @@
+1461. Check If a String Contains All Binary Codes of Size K
+
+code:
+class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        vector<char>v;
+        int total=pow(2,k);
+        set<vector<char>>p;
+        int i=0,j=0;
+        int n=s.length();
+        while(j<n)
+        {
+            if(j-i+1<k)
+            {
+            v.push_back(s[j]);
+            j++;
+            }
+            else
+            {
+             v.push_back(s[j]);
+             p.insert(v);
+             v.erase(v.begin());
+             i++;
+             j++;    
+            }
+        }
+
+        if(p.size()==total)
+        return true;
+        else
+        return false;
+
+    }
+};
