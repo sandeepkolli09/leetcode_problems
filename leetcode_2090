@@ -1,0 +1,24 @@
+2090. K Radius Subarray Averages:
+
+code :
+class Solution {
+public:
+    vector<int> getAverages(vector<int>& nums, int k) {
+       vector<int>res(nums.size(),-1);
+       int n=nums.size();
+       if (n < 2 * k + 1) return res;
+ vector<long long> pre(n, 0); 
+pre[0]=nums[0];
+for(int i=1;i<nums.size();i++)
+{
+    pre[i]=pre[i-1]+nums[i];
+}
+ int w = 2 * k + 1;
+ for (int j = k; j <= n - k - 1; j++) {
+            long long sum = pre[j + k] - (j - k > 0 ? pre[j - k - 1] : 0);  //(j - k > 0 ? pre[j - k - 1] : 0 for edge case handling 
+            res[j] = sum / w;                                                // avg
+        }
+
+return res;
+    }
+};
