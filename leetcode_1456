@@ -1,0 +1,37 @@
+
+1456. Maximum Number of Vowels in a Substring of Given Length
+
+code :
+
+class Solution {
+public:
+    int maxVowels(string s, int k) {
+       string v="aeiou";
+       int i=0,j=0;
+       int maxc=0;
+       int count=0;
+       while(j<s.length())
+{char p=s[j];
+    if(j-i+1<k)
+    {
+        if(v.find(p)!=string::npos)
+        count++;
+
+        j++;
+    }
+    else
+    {
+        if(v.find(p)!=string::npos)
+        count++;
+
+        maxc=max(count,maxc);
+        j++;
+         if(v.find(s[i])!=string::npos)
+        count--;
+        i++; 
+    }
+   
+}
+       return maxc;
+    }
+};
