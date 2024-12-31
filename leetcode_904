@@ -1,0 +1,50 @@
+904. Fruit Into Baskets
+
+code:
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int ans=0;
+        map<int,int>mp;
+        int i=0,j=0;
+        while(j<fruits.size())
+        {
+            mp[fruits[j]]++;
+            if(mp.size()<=2)
+            {
+                ans=max(ans,j-i+1);
+                j++;
+            }
+            else{
+                while(mp.size()>2)
+                {
+                    mp[fruits[i]]--;
+                    if(mp[fruits[i]]==0)
+                    mp.erase(fruits[i]);
+                    i++;
+                }
+                j++;
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+key points:
+the problem dosent look like sliding window but actually the problem is as like as max subarry with k distinct numbers (using variable sliding window );
+refer leetcode (max subarray with k distinct numbers);
