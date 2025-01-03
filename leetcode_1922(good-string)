@@ -1,0 +1,40 @@
+1922. Count Good Numbers:
+
+code:
+
+class Solution {
+public:
+    long help(int x,long long n)
+    {
+        if(n==0)
+        return 1;
+        if(x==0)
+        return 0;
+
+        long ans=help(x,n/2)%1000000007;
+       ans=(ans*ans)%1000000007;
+        if(n%2!=0)
+        ans=(ans*x)%1000000007;
+
+        return ans%1000000007;
+    }
+    int countGoodNumbers(long long n) {
+        long even=n/2+n%2;
+        long odd=n/2;
+        long eve_res=help(5,even);
+        long odd_res=help(4,odd);
+        return (eve_res*odd_res)%1000000007;
+        // return ans;
+    }
+};
+
+
+
+logic:
+total good strings in 4 digits ===  in a 4 digit string _ _ _ _ 
+a even place can hold 5 digits (0,2,4,6,8) therefore 5 possibilities.
+a odd place can be 4 digits (2,3,5,7) therefore 4 possibilities.
+so answer may be pow(5,even) * pow(4,odd) it might be the answer .
+therfore answer is ==========================================
+
+  power(5,even)*power(4,odd);
